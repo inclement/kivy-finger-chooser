@@ -9,21 +9,9 @@
             size: self.size
     CountdownLabel:
         id: countdown_label
-        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
-        color: 0.15, 0.15, 0.15, 1
         base_font_size: root.base_font_size
         font_size: root.base_font_size
         text: str(root.countdown_value) if root.countdown_value >= 0 else ''
-
-        canvas.before:
-            PushMatrix:
-            Scale:
-                origin: self.x + 0.5*self.width, self.y + 0.5*self.height
-                x: self.scale
-                y: self.scale
-
-        canvas.after:
-            PopMatrix:
 
     # Button:
     #     size_hint: 0.5, 0.05
@@ -39,3 +27,17 @@
         Ellipse:
             pos: self.pos[0] - self.radius, self.pos[1] - self.radius
             size: 2*self.radius, 2*self.radius
+
+<CountdownLabel>:
+    pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+    color: 0.15, 0.15, 0.15, 1
+
+    canvas.before:
+        PushMatrix:
+        Scale:
+            origin: self.x + 0.5*self.width, self.y + 0.5*self.height
+            x: self.scale
+            y: self.scale
+
+    canvas.after:
+        PopMatrix:
